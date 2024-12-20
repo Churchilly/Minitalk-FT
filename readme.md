@@ -87,7 +87,6 @@ int main() {
 ```
 
 In this example, when a `SIGSEGV` (segmentation fault) signal is received, the handler prints the current instruction pointer and then increments it to skip over the faulty instruction. This is a simplistic example and may not be safe or appropriate for all situations, but it demonstrates the kind of control you can achieve with the `ucontext` parameter.
-```
 
 ## Understanding Unicode & write
 

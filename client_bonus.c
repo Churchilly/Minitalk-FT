@@ -12,7 +12,7 @@ void	ack_handler(int signal)
 	g_ack = 1;
 }
 
-void	send_message(int server_pid, int c)
+void	send_message(int server_pid, wchar_t c)
 {
 	int	i;
 

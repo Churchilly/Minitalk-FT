@@ -1,9 +1,39 @@
 #include <signal.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
+#include <limits.h>
+#include "ft_printf/ft_printf.h"
 
 volatile sig_atomic_t g_ack = 0;
+
+int	ft_atoi(const char *str)
+{
+	int		sign;
+	long	num;
+
+	sign = 1;
+	num = 0;
+	while (*str == 9 || *str == 10 || *str == 11
+			|| *str == 12 || *str == 13 || *str == 32)
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while ((unsigned char)*str >= '0' && (unsigned char)*str <= '9')
+	{
+		num = (num * 10) + (*str - '0');
+		if (num * sign > INT_MAX)
+			return (INT_MAX);
+		if (num * sign < INT_MIN)
+			return (INT_MIN);
+		str++;
+	}
+	return ((int)(num * sign));
+}
 
 void	ack_handler(int signal)
 {
@@ -42,7 +72,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		printf("Usage: %s <server_pid> <string>\n", argv[0]);
+		ft_printf("Usage: %s <server_pid> <string>\n", argv[0]);
 		return 1;
 	}
 	sa.sa_handler = ack_handler;
@@ -50,7 +80,7 @@ int main(int argc, char *argv[])
 	sigemptyset(&sa.sa_mask);
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		exit(EXIT_FAILURE);
-	server_pid = atoi(argv[1]);
+	server_pid = ft_atoi(argv[1]);
 	while (*argv[2])
 	{
 		send_message(server_pid, *argv[2]);

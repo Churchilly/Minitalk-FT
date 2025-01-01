@@ -1,9 +1,8 @@
 #include <signal.h>
-#include "minitalk_bonus.h"
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include "minitalk_bonus.h"
+#include "ft_printf/ft_printf.h"
 
 t_list	*g_buffer = NULL;
 
@@ -44,7 +43,7 @@ int main(void)
 {
 	struct sigaction	sa;
 
-	printf("Server PID: %d\n", getpid());
+	ft_printf("Server PID: %d\n", getpid());
 	sa.sa_sigaction = handler;
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);

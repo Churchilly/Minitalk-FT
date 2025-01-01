@@ -1,7 +1,7 @@
 #include <signal.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "ft_printf/ft_printf.h"
 
 void	signal_handler(int signal)
 {
@@ -21,7 +21,7 @@ void	signal_handler(int signal)
 
 int	main(void)
 {
-	printf("Server PID: %d\n", getpid()); // replace with urs
+	ft_printf("Server PID: %d\n", getpid()); // replace with urs
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while (42)

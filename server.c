@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 10:11:50 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/07 17:37:55 by yusudemi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -21,7 +33,7 @@ void	signal_handler(int signal)
 
 int	main(void)
 {
-	ft_printf("Server PID: %d\n", getpid()); // replace with urs
+	ft_printf("Server PID: %d\n", getpid());
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while (42)

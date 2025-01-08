@@ -8,7 +8,7 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 NAME_SERVER = server
 NAME_CLIENT = client
 
-SRCS_SERVER_BONUS = server_bonus.c	list_utils_bonus.c
+SRCS_SERVER_BONUS = server_bonus.c
 SRCS_CLIENT_BONUS = client_bonus.c
 OBJS_SERVER_BONUS = $(SRCS_SERVER_BONUS:.c=.o)
 OBJS_CLIENT_BONUS = $(SRCS_CLIENT_BONUS:.c=.o)
@@ -35,14 +35,17 @@ $(NAME_CLIENT_BONUS): $(OBJS_CLIENT_BONUS)
 	$(CC) $(CFLAGS) -o $(NAME_CLIENT_BONUS) $(OBJS_CLIENT_BONUS) $(LIBFTPRINTF)
 
 printf:
+
 	make -C $(LIBFTPRINTF_DIR)
 
 clean:
+
 	rm -f $(OBJS_SERVER) $(OBJS_CLIENT)
 	rm -f $(OBJS_SERVER_BONUS) $(OBJS_CLIENT_BONUS)
 	make -C $(LIBFTPRINTF_DIR) clean
 
 fclean: clean
+
 	rm -f $(NAME_SERVER) $(NAME_CLIENT)
 	rm -f $(NAME_SERVER_BONUS) $(NAME_CLIENT_BONUS)
 	make -C $(LIBFTPRINTF_DIR) fclean

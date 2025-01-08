@@ -1,23 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/07 10:11:48 by yusudemi          #+#    #+#             */
+/*   Updated: 2025/01/08 10:28:40 by yusudemi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "minitalk_bonus.h"
 #include "ft_printf/ft_printf.h"
-
-t_list	*g_buffer = NULL;
+#include <wchar.h>
 
 void	server_error(void)
 {
 	write(1, "Encountered with an error.", 27);
-	clear_list(&g_buffer);
 	exit(EXIT_FAILURE);
 }
 
 void	handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static int	counter = 0;
-	static char current_char = 0;
-	t_list			*tmp;
+	static char	current_char = 0;
 
 	(void)ucontext;
 	if (sig == SIGUSR1)
@@ -25,21 +33,20 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 	counter++;
 	if (counter == 8)
 	{
-		tmp = list_new(current_char);
-		list_add_back(&g_buffer, tmp);
+		write(1, &current_char, 1);
 		if (current_char == '\0')
 		{
-			if (kill(info->si_pid, SIGUSR1) == -1)
+			if (kill(info->si_pid, SIGUSR2) == -1)
 				server_error();
-			write_list(g_buffer);
-			clear_list(&g_buffer);
 		}
 		current_char = 0;
 		counter = 0;
 	}
+	if (kill(info->si_pid, SIGUSR1) == -1)
+		server_error();
 }
 
-int main(void)
+int	main(void)
 {
 	struct sigaction	sa;
 

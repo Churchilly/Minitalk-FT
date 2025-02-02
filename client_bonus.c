@@ -6,14 +6,13 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:11:38 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/08 10:23:57 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:58:55 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdbool.h>
 #include <limits.h>
 #include "ft_printf/ft_printf.h"
 

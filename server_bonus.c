@@ -6,7 +6,7 @@
 /*   By: yusudemi <yusudemi@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:11:48 by yusudemi          #+#    #+#             */
-/*   Updated: 2025/01/08 10:28:40 by yusudemi         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:40:39 by yusudemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "ft_printf/ft_printf.h"
-#include <wchar.h>
 
 void	server_error(void)
 {
